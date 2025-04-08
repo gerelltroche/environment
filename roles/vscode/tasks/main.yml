@@ -8,12 +8,21 @@
     - vscode
     - editor
 
+- name: Check installed VS Code extensions
+  ansible.builtin.command: code --list-extensions
+  register: installed_extensions
+  changed_when: false
+  ignore_errors: true # Ignore if code command fails (e.g., VS Code not fully installed yet)
+  become: no
+  tags:
+    - vscode
+    - editor
+    - extensions
+
 - name: Install VS Code Extension - C# Dev Kit
-  community.general.vscode_extension:
-    name: ms-dotnettools.csdevkit
-    state: present
-  collections:
-    - community.general
+  ansible.builtin.command: code --install-extension ms-dotnettools.csdevkit
+  when: installed_extensions.stdout.find('ms-dotnettools.csdevkit') == -1
+  become: no
   tags:
     - vscode
     - editor
@@ -21,11 +30,9 @@
     - dotnet
 
 - name: Install VS Code Extension - ESLint
-  community.general.vscode_extension:
-    name: dbaeumer.vscode-eslint
-    state: present
-  collections:
-    - community.general
+  ansible.builtin.command: code --install-extension dbaeumer.vscode-eslint
+  when: installed_extensions.stdout.find('dbaeumer.vscode-eslint') == -1
+  become: no
   tags:
     - vscode
     - editor
@@ -34,11 +41,9 @@
     - react
 
 - name: Install VS Code Extension - Prettier
-  community.general.vscode_extension:
-    name: esbenp.prettier-vscode
-    state: present
-  collections:
-    - community.general
+  ansible.builtin.command: code --install-extension esbenp.prettier-vscode
+  when: installed_extensions.stdout.find('esbenp.prettier-vscode') == -1
+  become: no
   tags:
     - vscode
     - editor
@@ -47,11 +52,9 @@
     - react
 
 - name: Install VS Code Extension - AWS Toolkit
-  community.general.vscode_extension:
-    name: amazonwebservices.aws-toolkit-vscode
-    state: present
-  collections:
-    - community.general
+  ansible.builtin.command: code --install-extension amazonwebservices.aws-toolkit-vscode
+  when: installed_extensions.stdout.find('amazonwebservices.aws-toolkit-vscode') == -1
+  become: no
   tags:
     - vscode
     - editor
