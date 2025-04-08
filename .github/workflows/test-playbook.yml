@@ -40,6 +40,9 @@ jobs:
       # Checks for best practices and potential errors
 
     - name: Run ansible-playbook syntax-check
+      env:
+        # Explicitly set collection paths for syntax check
+        ANSIBLE_COLLECTIONS_PATHS: "~/.ansible/collections:/opt/homebrew/Cellar/ansible/11.4.0/libexec/lib/python3.13/site-packages/ansible_collections"
       run: ansible-playbook --syntax-check setup_macbook.yml
       # Verifies playbook syntax
 
