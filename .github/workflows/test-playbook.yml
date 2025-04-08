@@ -27,6 +27,14 @@ jobs:
     - name: Install Ansible collections from requirements.yml
       run: ansible-galaxy install -r requirements.yml
 
+    - name: Verify Collections Installation
+      run: |
+        echo "Listing installed collections path:"
+        ls -l ~/.ansible/collections/ansible_collections/
+        echo "---"
+        echo "Listing collections via ansible-galaxy:"
+        ansible-galaxy collection list
+
     - name: Run ansible-lint
       run: ansible-lint .
       # Checks for best practices and potential errors
