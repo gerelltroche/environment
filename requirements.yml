@@ -1,0 +1,4 @@
+---
+collections:
+  - name: community.general
+    version: ">=6.0.0" # Or specify a different constraint if needed
