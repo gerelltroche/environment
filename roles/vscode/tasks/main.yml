@@ -12,6 +12,8 @@
   community.general.vscode_extension:
     name: ms-dotnettools.csdevkit
     state: present
+  collections:
+    - community.general
   tags:
     - vscode
     - editor
@@ -22,6 +24,8 @@
   community.general.vscode_extension:
     name: dbaeumer.vscode-eslint
     state: present
+  collections:
+    - community.general
   tags:
     - vscode
     - editor
@@ -33,6 +37,8 @@
   community.general.vscode_extension:
     name: esbenp.prettier-vscode
     state: present
+  collections:
+    - community.general
   tags:
     - vscode
     - editor
@@ -44,6 +50,8 @@
   community.general.vscode_extension:
     name: amazonwebservices.aws-toolkit-vscode
     state: present
+  collections:
+    - community.general
   tags:
     - vscode
     - editor
