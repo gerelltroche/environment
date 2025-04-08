@@ -12,7 +12,7 @@
 
 - name: Install Bun using Homebrew
   community.general.homebrew:
-    name: bun
+    name: oven-sh/bun/bun
     state: present
   become: no
   tags:
