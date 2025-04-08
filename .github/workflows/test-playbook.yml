@@ -24,6 +24,9 @@ jobs:
     - name: Install Ansible and ansible-lint
       run: brew install ansible ansible-lint
 
+    - name: Install Ansible community.general collection
+      run: ansible-galaxy collection install community.general
+
     - name: Run ansible-lint
       run: ansible-lint .
       # Checks for best practices and potential errors
