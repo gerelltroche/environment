@@ -35,6 +35,8 @@
     regexp: '^export ZSH_THEME=".*"$'
     line: 'export ZSH_THEME="minimal"'
     backrefs: yes # Required to ensure replacement works correctly
+    create: yes   # Create the file if it doesn't exist
+    mode: '0644'  # Set permissions if creating
   tags:
     - zsh
     - shell
