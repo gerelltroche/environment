@@ -10,6 +10,15 @@
     - node
     - npm
 
+- name: Ensure oven-sh/bun Homebrew tap is present
+  community.general.homebrew_tap:
+    name: oven-sh/bun
+    state: present
+  become: no
+  tags:
+    - nodejs
+    - bun
+
 - name: Install Bun using Homebrew
   community.general.homebrew:
     name: oven-sh/bun/bun
