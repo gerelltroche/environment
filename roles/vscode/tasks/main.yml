@@ -19,16 +19,6 @@
     - editor
     - extensions
 
-- name: Install VS Code Extension - C# Dev Kit
-  ansible.builtin.command: code --install-extension ms-dotnettools.csdevkit
-  when: installed_extensions.stdout.find('ms-dotnettools.csdevkit') == -1
-  become: no
-  tags:
-    - vscode
-    - editor
-    - extensions
-    - dotnet
-
 - name: Install VS Code Extension - ESLint
   ansible.builtin.command: code --install-extension dbaeumer.vscode-eslint
   when: installed_extensions.stdout.find('dbaeumer.vscode-eslint') == -1
