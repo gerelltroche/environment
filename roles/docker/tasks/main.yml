@@ -1,0 +1,12 @@
+---
+- name: Install Docker Desktop
+  community.general.homebrew_cask:
+    name: docker
+    state: present
+    # Note: Docker Desktop might require manual startup/login on first run.
+  become: no
+  tags:
+    - docker
+    - container
+
+# Optional: Add tasks to configure Docker settings if needed.

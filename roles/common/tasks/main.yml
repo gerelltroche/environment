@@ -1,0 +1,35 @@
+---
+- name: Check if Homebrew is installed
+  ansible.builtin.stat:
+    path: "{{ brew_install_path }}/brew"
+  register: homebrew_stat
+  tags:
+    - common
+    - brew
+
+- name: Install Homebrew if not installed
+  ansible.builtin.shell: |
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  args:
+    executable: /bin/bash
+    creates: "{{ brew_install_path }}/brew"
+  when: not homebrew_stat.stat.exists
+  register: brew_install
+  changed_when: brew_install.rc == 0
+  failed_when: brew_install.rc != 0 and not 'Already installed' in brew_install.stderr # Be slightly lenient if script says already installed but stat check failed
+  tags:
+    - common
+    - brew
+
+# Note: Adding Homebrew to PATH automatically might require shell profile modification
+# which can be complex. Usually, the Homebrew installer handles this or provides instructions.
+# We'll assume the user follows post-install instructions if needed.
+
+- name: Install Git using Homebrew
+  community.general.homebrew:
+    name: git
+    state: present
+  become: no # Homebrew should generally run as the user
+  tags:
+    - common
+    - git

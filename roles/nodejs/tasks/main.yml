@@ -1,0 +1,27 @@
+---
+- name: Install Node.js (LTS) using Homebrew
+  community.general.homebrew:
+    name: node # Installs the latest LTS version by default
+    state: present
+    # Note: Homebrew handles idempotency for package installs.
+  become: no
+  tags:
+    - nodejs
+    - node
+    - npm
+
+- name: Install Bun using Homebrew
+  community.general.homebrew:
+    name: bun
+    state: present
+  become: no
+  tags:
+    - nodejs
+    - bun
+
+# Optionally, install Yarn or pnpm if preferred
+# - name: Install Yarn using Homebrew
+#   community.general.homebrew:
+#     name: yarn
+#     state: present
+#   become: no

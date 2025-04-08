@@ -1,0 +1,41 @@
+---
+- name: Install Google Chrome
+  community.general.homebrew_cask:
+    name: google-chrome
+    state: present
+  become: no
+  tags:
+    - dev_utils
+    - apps
+    - browser
+
+- name: Install iTerm2
+  community.general.homebrew_cask:
+    name: iterm2
+    state: present
+  become: no
+  tags:
+    - dev_utils
+    - apps
+    - terminal
+
+- name: Install Insomnia
+  community.general.homebrew_cask:
+    name: insomnia
+    state: present
+  become: no
+  tags:
+    - dev_utils
+    - apps
+    - api
+
+- name: Install Terraform
+  community.general.homebrew:
+    name: terraform
+    state: present
+  become: no
+  tags:
+    - dev_utils
+    - cli
+    - iac
+    - terraform

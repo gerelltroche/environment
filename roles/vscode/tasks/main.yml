@@ -1,0 +1,54 @@
+---
+- name: Install Visual Studio Code
+  community.general.homebrew_cask:
+    name: visual-studio-code
+    state: present
+  become: no
+  tags:
+    - vscode
+    - editor
+
+- name: Install VS Code Extension - C# Dev Kit
+  community.general.vscode_extension:
+    name: ms-dotnettools.csdevkit
+    state: present
+  tags:
+    - vscode
+    - editor
+    - extensions
+    - dotnet
+
+- name: Install VS Code Extension - ESLint
+  community.general.vscode_extension:
+    name: dbaeumer.vscode-eslint
+    state: present
+  tags:
+    - vscode
+    - editor
+    - extensions
+    - nodejs
+    - react
+
+- name: Install VS Code Extension - Prettier
+  community.general.vscode_extension:
+    name: esbenp.prettier-vscode
+    state: present
+  tags:
+    - vscode
+    - editor
+    - extensions
+    - nodejs
+    - react
+
+- name: Install VS Code Extension - AWS Toolkit
+  community.general.vscode_extension:
+    name: amazonwebservices.aws-toolkit-vscode
+    state: present
+  tags:
+    - vscode
+    - editor
+    - extensions
+    - aws
+
+# Note: Requires 'code' command in PATH. The homebrew cask usually handles this,
+# but might require VS Code to be launched once manually first.

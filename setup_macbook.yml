@@ -1,0 +1,20 @@
+---
+- name: Configure MacBook Pro for Development
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  vars:
+    brew_install_path: "/opt/homebrew/bin" # For Apple Silicon Macs
+    # brew_install_path: "/usr/local/bin" # Uncomment for Intel Macs
+
+  roles:
+    - common
+    - zsh
+    - dotnet
+    - nodejs
+    - vscode
+    - docker
+    - aws
+    - dev_utils
+    # Add other roles here if needed

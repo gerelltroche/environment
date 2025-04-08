@@ -1,0 +1,19 @@
+---
+- name: Tap dotnet cask versions repository
+  community.general.homebrew_tap:
+    name: homebrew/cask-versions
+    state: present
+  become: no
+  tags:
+    - dotnet
+    - sdk
+
+- name: Install .NET SDK (latest stable) using Homebrew Cask
+  community.general.homebrew_cask:
+    name: dotnet-sdk
+    state: present
+    # Note: Homebrew handles idempotency for package installs.
+  become: no
+  tags:
+    - dotnet
+    - sdk

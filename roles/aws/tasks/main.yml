@@ -1,0 +1,19 @@
+---
+- name: Install AWS CLI v2
+  community.general.homebrew:
+    name: awscli # Installs v2
+    state: present
+  become: no
+  tags:
+    - aws
+    - cli
+
+- name: Install AWS Session Manager Plugin
+  community.general.homebrew_cask:
+    name: session-manager-plugin
+    state: present
+  become: no
+  tags:
+    - aws
+    - cli
+    - ssm

@@ -1,0 +1,42 @@
+---
+- name: Ensure zsh is installed via Homebrew
+  community.general.homebrew:
+    name: zsh
+    state: present
+  become: no
+  tags:
+    - zsh
+    - shell
+
+- name: Check if Oh My Zsh is installed
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  register: oh_my_zsh_stat
+  tags:
+    - zsh
+    - shell
+    - ohmyzsh
+
+- name: Install Oh My Zsh
+  ansible.builtin.shell: >
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  args:
+    creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  when: not oh_my_zsh_stat.stat.exists
+  changed_when: true # Assume changed if the task runs
+  tags:
+    - zsh
+    - shell
+    - ohmyzsh
+
+- name: Set Zsh theme to 'minimal'
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    regexp: '^export ZSH_THEME=".*"$'
+    line: 'export ZSH_THEME="minimal"'
+    backrefs: yes # Required to ensure replacement works correctly
+  tags:
+    - zsh
+    - shell
+    - ohmyzsh
+    - theme

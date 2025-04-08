@@ -1,0 +1,23 @@
+# Ansible temporary files
+*.retry
+*.vault
+
+# macOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Python cache/virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE/Editor specific files (optional, but good practice)
+.vscode/
+.idea/

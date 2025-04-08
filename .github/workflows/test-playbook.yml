@@ -1,0 +1,44 @@
+# .github/workflows/test-playbook.yml
+name: Test Ansible Playbook
+
+on:
+  push:
+    branches: [ main ] # Adjust if your main branch has a different name
+  pull_request:
+    branches: [ main ] # Adjust if your main branch has a different name
+  workflow_dispatch: # Allows manual triggering from GitHub UI
+
+jobs:
+  test:
+    runs-on: macos-latest # Use the latest available macOS runner
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4 # Checks out your repository under $GITHUB_WORKSPACE
+
+    - name: Set up Homebrew
+      id: set-up-homebrew
+      uses: Homebrew/actions/setup-homebrew@master
+      # Note: macOS runners usually have Homebrew, but this ensures it's configured correctly for the action environment.
+
+    - name: Install Ansible and ansible-lint
+      run: brew install ansible ansible-lint
+
+    - name: Run ansible-lint
+      run: ansible-lint .
+      # Checks for best practices and potential errors
+
+    - name: Run ansible-playbook syntax-check
+      run: ansible-playbook --syntax-check setup_macbook.yml
+      # Verifies playbook syntax
+
+    - name: Run ansible-playbook check mode
+      run: ansible-playbook --check setup_macbook.yml
+      # Performs a dry run, reporting changes without making them
+      # This might fail on some tasks if they absolutely require execution (e.g., shell script checks)
+      continue-on-error: true # Allow continuing even if check mode fails on certain tasks
+
+    - name: Run ansible-playbook full execution
+      run: ansible-playbook setup_macbook.yml
+      # Executes the playbook fully on the runner
+      # This is the most comprehensive test but modifies the runner environment
