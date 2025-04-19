@@ -50,3 +50,14 @@
     - apps
     - notes
     - obsidian
+
+- name: Install Windsurf
+  community.general.homebrew_cask:
+    name: windsurf
+    state: present
+  become: no
+  tags:
+    - dev_utils
+    - apps
+    - ide
+    - windsurf
