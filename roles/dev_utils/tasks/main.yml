@@ -39,3 +39,14 @@
     - cli
     - iac
     - terraform
+
+- name: Install Obsidian
+  community.general.homebrew_cask:
+    name: obsidian
+    state: present
+  become: no
+  tags:
+    - dev_utils
+    - apps
+    - notes
+    - obsidian
