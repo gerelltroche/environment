@@ -19,12 +19,11 @@ This Ansible playbook configures a macOS machine for development, focusing on .N
 
 *   **common:** Installs Homebrew (if needed) and Git.
 *   **zsh:** Installs Oh My Zsh and sets the theme to 'minimal'.
-*   **dotnet:** Installs the latest stable .NET SDK.
 *   **nodejs:** Installs the latest LTS Node.js version (includes npm) and Bun.
 *   **vscode:** Installs Visual Studio Code and essential extensions (C# Dev Kit, ESLint, Prettier, AWS Toolkit).
 *   **docker:** Installs Docker Desktop.
 *   **aws:** Installs AWS CLI v2 and the Session Manager Plugin.
-*   **dev_utils:** Installs common development utilities (Google Chrome, iTerm2, Insomnia, Terraform).
+*   **dev_utils:** Installs common development utilities (Google Chrome, iTerm2, Insomnia, Terraform, Obsidian, Windsurf IDE, 1Password, Notion, Slack).
 
 ## Usage
 
@@ -47,14 +46,15 @@ Tags have been added to tasks to allow running specific parts of the setup:
 *   **Install only VS Code and extensions:** `ansible-playbook setup_macbook.yml --tags vscode`
 *   **Install only Docker:** `ansible-playbook setup_macbook.yml --tags docker`
 *   **Install only AWS tools (CLI, SSM plugin):** `ansible-playbook setup_macbook.yml --tags aws`
-*   **Install only Dev Utilities (Chrome, iTerm2, Insomnia, Terraform):** `ansible-playbook setup_macbook.yml --tags dev_utils`
+*   **Install only Dev Utilities (Chrome, iTerm2, Insomnia, Terraform, Obsidian, Windsurf IDE, 1Password, Notion, Slack):** `ansible-playbook setup_macbook.yml --tags dev_utils`
 *   **Install only Terraform:** `ansible-playbook setup_macbook.yml --tags terraform`
 *   **Install base tools (Homebrew, Git):** `ansible-playbook setup_macbook.yml --tags common`
 *   **Install development editors/tools (VS Code, Docker, AWS):** `ansible-playbook setup_macbook.yml --tags editor,container,aws`
 *   **Skip Docker installation:** `ansible-playbook setup_macbook.yml --skip-tags docker`
 *   **Skip AWS tools installation:** `ansible-playbook setup_macbook.yml --skip-tags aws`
 *   **Skip Zsh/Oh My Zsh setup:** `ansible-playbook setup_macbook.yml --skip-tags zsh`
-*   **Skip Dev Utilities installation:** `ansible-playbook setup_macbook.yml --skip-tags dev_utils`
+*   **Skip Dev Utilities installation (Chrome, iTerm2, Insomnia, Terraform, Obsidian, Windsurf IDE, 1Password, Notion, Slack):** `ansible-playbook setup_macbook.yml --skip-tags dev_utils`
+*   **Skip Dev Utilities installation (Chrome, iTerm2, Insomnia, Terraform, Obsidian, Windsurf IDE, 1Password, Notion, Slack):** `ansible-playbook setup_macbook.yml --skip-tags dev_utils`
 
 ## Best Practices & Recommendations
 
