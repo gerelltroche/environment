@@ -61,3 +61,33 @@
     - apps
     - ide
     - windsurf
+
+- name: Install 1Password
+  community.general.homebrew_cask:
+    name: 1password
+    state: present
+  become: no
+  tags:
+    - dev_utils
+    - apps
+    - password_manager
+
+- name: Install Notion
+  community.general.homebrew_cask:
+    name: notion
+    state: present
+  become: no
+  tags:
+    - dev_utils
+    - apps
+    - notes
+
+- name: Install Slack
+  community.general.homebrew_cask:
+    name: slack
+    state: present
+  become: no
+  tags:
+    - dev_utils
+    - apps
+    - communication
